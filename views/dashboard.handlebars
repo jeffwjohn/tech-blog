@@ -7,10 +7,6 @@
       <input type="text" id="post-title" name="post-title" />
     </div>
     <div>
-      <label for="post-url">Link</label>
-      <input id="post-url" name="post-url" />
-    </div>
-    <div>
       <textarea name="blog-body" placeholder="Blog Text"></textarea>
     </div>
     <button type="submit" class="btn">Create</button>
@@ -28,7 +24,7 @@
 {{#if posts.length}}
 <section>
   <h2>Your Posts</h2>
-  <ol onload="console.log(HEY!!">
+  <ol>
     {{#each posts as |post|}}
     <li>
       {{> post-info post}}
