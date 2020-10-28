@@ -1,3 +1,5 @@
+// const AutoLogout = require('./auto-logout.js');
+
 // Async/await acts as "syntactic sugar" for our code, much like ES6 classes, and help make our Promises more readable. To help asynchronous code use async/await, we first add the keyword async to the function that wraps our asynchronous code.
 async function signupFormHandler(event) {
     event.preventDefault();
@@ -67,6 +69,8 @@ async function loginFormHandler(event) {
 
         if (response.ok) {
             document.location.replace('/dashboard');
+            //  AutoLogout();
+           
         } else {
             alert(response.statusText);
         }
