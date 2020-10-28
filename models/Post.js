@@ -62,7 +62,7 @@ Post.init({
     type: DataTypes.TEXT,
     allowNull: false,
     validate: {
-      len: [1, 300]
+      len: [1, 1000]
     }
   },
   user_id: {

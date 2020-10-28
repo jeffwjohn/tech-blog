@@ -142,6 +142,10 @@
     background-color: #1f9c13;
   }
   
+  .blog-text {
+    background-color: #deffa2;
+  }
+
   .comment-form {
     margin-bottom: 5%;
   }
@@ -176,3 +180,4 @@
     padding: 1%;
     font-size: 110%;
   }
+  
