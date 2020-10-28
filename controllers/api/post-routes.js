@@ -6,6 +6,7 @@ const {
   Comment
 } = require('../../models');
 const sequelize = require('../../config/connection');
+const withAuth = require('../../utils/auth');
 
 
 // get all users
@@ -19,7 +20,8 @@ router.get('/', (req, res) => {
         'post_url',
         'title',
         'created_at',
-        [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
+        [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count'],
+        'blog_text'
       ],
       order: [
         ['created_at', 'DESC']
@@ -75,7 +77,8 @@ router.get('/:id', (req, res) => {
         'post_url',
         'title',
         'created_at',
-        [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
+        [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count'],
+        'blog_text'
       ],
       include: [{
         model: User,
@@ -97,12 +100,14 @@ router.get('/:id', (req, res) => {
     });
 });
 
-router.post('/', (req, res) => {
+router.post('/', withAuth, (req, res) => {
   // expects {title: 'Taskmaster goes public!', post_url: 'https://taskmaster.com/press', user_id: 1}
   Post.create({
       title: req.body.title,
       post_url: req.body.post_url,
-      user_id: req.body.user_id
+      blog_text: req.body.blog_text,
+      user_id: req.session.user_id    
+      // user_id: req.body.user_id
     })
     .then(dbPostData => res.json(dbPostData))
     .catch(err => {
@@ -148,7 +153,7 @@ router.post('/', (req, res) => {
 // We're doing two things here (below). First, we're checking that a session exists before we even touch the database. Then if a session does exist, we're using the saved user_id property on the session to insert a new record in the vote table.
 
 // This means that the upvote feature will only work if someone has logged in, so you should log in with a test account on the front end if you haven't already. The first time you click the upvote button, the page will refresh, and the comment count will have gone up by one. Success! If you click the button a second time, however, you'll get an error, because the Sequelize relationships don't allow duplicate entries:
-router.put('/upvote', (req, res) => {
+router.put('/upvote', withAuth, (req, res) => {
   // make sure the session exists first
   if (req.session) {
     // pass session id along with all destructured properties on req.body
@@ -161,9 +166,10 @@ router.put('/upvote', (req, res) => {
   }
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', withAuth, (req, res) => {
   Post.update({
-      title: req.body.title
+      title: req.body.title,
+      blog_text: req.body.blog_text
     }, {
       where: {
         id: req.params.id
@@ -184,25 +190,18 @@ router.put('/:id', (req, res) => {
     });
 });
 
-router.delete('/:id', (req, res) => {
-  Post.destroy({
-      where: {
-        id: req.params.id
-      }
+router.delete('/:id', withAuth, (req, res) => {
+  Post.findOne({
+    where: {id: req.params.id},
+    include: [Comment]
+  })
+  .then(post => {
+    post.comments.forEach(comment => {
+      comment.destroy();
     })
-    .then(dbPostData => {
-      if (!dbPostData) {
-        res.status(404).json({
-          message: 'No post found with this id'
-        });
-        return;
-      }
-      res.json(dbPostData);
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json(err);
-    });
+    post.destroy();
+    res.end();
+  })
 });
 
 

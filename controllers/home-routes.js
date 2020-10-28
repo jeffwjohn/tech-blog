@@ -35,7 +35,8 @@ router.get('/', (req, res) => {
                 'post_url',
                 'title',
                 'created_at',
-                [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
+                [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count'],
+                'blog_text'
             ],
             include: [{
                     model: Comment,
@@ -58,7 +59,10 @@ router.get('/', (req, res) => {
         .then(dbPostData => {
             const posts = dbPostData.map(post => post.get({ plain: true }));
             // pass a single post object into the homepage template
-            res.render('homepage', { posts });
+            res.render('homepage', {
+                posts,
+                loggedIn: req.session.loggedIn
+              });
         })
         .catch(err => {
             console.log(err);
@@ -106,7 +110,8 @@ router.get('/post/:id', (req, res) => {
                 'post_url',
                 'title',
                 'created_at',
-                [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
+                [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count'],
+                'blog_text'
             ],
             include: [{
                     model: Comment,
@@ -137,10 +142,9 @@ router.get('/post/:id', (req, res) => {
 
             // pass data to template
             res.render('single-post', {
-              post,
-              loggedIn: req.session.loggedIn
-            });
-            });
+                post,
+                loggedIn: req.session.loggedIn
+              });
         })
         .catch(err => {
             console.log(err);

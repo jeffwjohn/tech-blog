@@ -35,7 +35,7 @@ async function signupFormHandler(event) {
         // Now we can add error handling by using the .ok property on the response object. You can see that at the end of the following code block:
         // check the response status
         if (response.ok) {
-            console.log('success');
+            document.location.replace('/dashboard');
         } else {
             alert(response.statusText);
         }
@@ -66,7 +66,7 @@ async function loginFormHandler(event) {
         });
 
         if (response.ok) {
-            document.location.replace('/');
+            document.location.replace('/dashboard');
         } else {
             alert(response.statusText);
         }
