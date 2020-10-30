@@ -1,12 +1,11 @@
 {{> post-info post }}
 
-{{!-- The {{#if}} helper checks truthy values only, so you couldn't write something like {{#if x === y}}. --}}
 {{#if loggedIn}}
 
 <form class="comment-form">
   <div>
     <textarea id="commentTextArea" name="comment-body" maxlength="250"></textarea>
-      <p id="count">Characters left: 250</p>
+    <p id="count">Characters left: 250</p>
   </div>
 
   <div>

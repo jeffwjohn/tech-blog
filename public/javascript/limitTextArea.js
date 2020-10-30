@@ -2,9 +2,9 @@ const textarea = document.querySelector("textarea");
 
 document.getElementById('textarea').onkeyup = function () {
     document.getElementById('count').innerHTML = "Characters left: " + (1000 - this.value.length);
-  };
+};
 textarea.addEventListener("input", event => {
-    
+
     const target = event.currentTarget;
     const maxLength = target.getAttribute("maxlength");
     const currentLength = target.value.length;
@@ -15,4 +15,3 @@ textarea.addEventListener("input", event => {
 
     console.log(`${maxLength - currentLength} chars left`);
 });
-

@@ -1,5 +1,3 @@
-
-// Async/await acts as "syntactic sugar" for our code, much like ES6 classes, and help make our Promises more readable. To help asynchronous code use async/await, we first add the keyword async to the function that wraps our asynchronous code.
 async function signupFormHandler(event) {
     event.preventDefault();
 
@@ -7,19 +5,6 @@ async function signupFormHandler(event) {
     const email = document.querySelector('#email-signup').value.trim();
     const password = document.querySelector('#password-signup').value.trim();
 
-    //     if (username && email && password) {
-    //       await fetch('/api/users', {
-    //         method: 'post',
-    //         body: JSON.stringify({
-    //           username,
-    //           email,
-    //           password
-    //         }),
-    //         headers: { 'Content-Type': 'application/json' }
-    //       }).then((response) => {console.log(response)})
-    //     }
-    //   }
-    // When using await, we can assign the result of the promise to a variable. For example, const response = await fetch();. This way, we don't need to use catch() or then() to tell the code what to do after the Promise completes.
     if (username && email && password) {
         const response = await fetch('/api/users', {
             method: 'post',
@@ -33,7 +18,6 @@ async function signupFormHandler(event) {
             }
         });
 
-        // Now we can add error handling by using the .ok property on the response object. You can see that at the end of the following code block:
         // check the response status
         if (response.ok) {
             document.location.replace('/dashboard');
@@ -68,7 +52,7 @@ async function loginFormHandler(event) {
 
         if (response.ok) {
             document.location.replace('/dashboard');
-           
+
         } else {
             alert(response.statusText);
         }

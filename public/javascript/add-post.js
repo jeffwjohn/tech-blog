@@ -24,4 +24,3 @@ async function newFormHandler(event) {
 }
 
 document.querySelector('.new-post-form').addEventListener('submit', newFormHandler);
-//   On form submission, this will grab the post-title and post-url values from the form and send them with a POST request to /api/posts. Remember, though, that the /api/posts endpoint requires a third property: the user ID. Like the other routes, this can be obtained from the session.
