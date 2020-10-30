@@ -24,9 +24,9 @@ class AutoLogout {
   }
 
   setTimeout() {
-    this.warnTimeout = setTimeout(this.warn, 1 * 5000 * 1000);
+    // this.warnTimeout = setTimeout(this.warn, 1 * 10 * 1000);
 
-    this.logoutTimeout = setTimeout(this.logout, 1 * 10 * 1000);
+    // this.logoutTimeout = setTimeout(this.logout, 1 * 20 * 1000);
   }
 
   resetTimeout() {
@@ -35,7 +35,7 @@ class AutoLogout {
   }
 
   warn() {
-    alert('If your session remains idle, you will be logged out automatically. Click ok within 5 seconds to continue session.');
+    alert('If your session remains idle, you will be logged out automatically. Click ok within 10 seconds to continue session.');
     // $('#myModal').modal('show');
 
     // $('#myModal').on('shown.bs.modal', function () {

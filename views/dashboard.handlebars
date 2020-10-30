@@ -7,9 +7,11 @@
       <input type="text" id="post-title" name="post-title" />
     </div>
     <div>
-      <textarea name="blog-body" placeholder="Blog Text"></textarea>
+      <label for="blog-body">Body</label>
+      <textarea id="textarea" name="blog-body" placeholder="Blog Text" maxlength="1000"></textarea>
+      <p id="count">Characters left: 1000</p>
     </div>
-    <button type="submit" class="btn">Create</button>
+    <button type="submit" class="create-btn">Create</button>
 
 
     {{!-- <form class="comment-form">
@@ -35,4 +37,5 @@
 </section>
 {{/if}}
 
+<script src="/javascript/limitTextArea.js"></script>
 <script src="/javascript/add-post.js"></script>
