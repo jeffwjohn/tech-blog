@@ -12,15 +12,18 @@
 </head>
 
 <body>
-<div id="myModal" tabindex="-1" class="modal fade" role="dialog" aria-labelledby="timedAlert" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-body">
-        <div><div class="loadersmall"></div>We control the vertical and the horizontal. Please stand by for <span> </span>...</div>
-      </div>
+    <div id="myModal" tabindex="-1" class="modal fade" role="dialog" aria-labelledby="timedAlert" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div>
+                        <div class="loadersmall"></div>We control the vertical and the horizontal. Please stand by for
+                        <span> </span>...
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 
     <div class="wrapper">
         <header>
@@ -49,8 +52,14 @@
     <script src="/javascript/logout.js"></script>
     <script src="/javascript/auto-logout.js"></script>
     {{/if}}
-
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+        crossorigin="anonymous"></script>
 </body>
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 </html>
 {{!-- Notice that there's a special placeholder in the <main> element: {{{ body }}}. This is Handlebars.js syntax for data that will be plugged in later. In this case, the data will be another, smaller template, like the contents of the homepage. --}}
