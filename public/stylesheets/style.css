@@ -18,6 +18,7 @@
     transition: color .1s;
     color:  #fff5eb;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+
     /* color: #060b11; */
 
   }
@@ -32,8 +33,18 @@
   
   a:hover {
     color: #3486eb;
+    text-decoration: none;
+    
   }
   
+  #logout {
+    color: #fff5eb;
+  }
+
+  #logout:hover {
+    color: #3486eb;
+  }
+
   button {
     background-color: #225ca3;
     border: 0;
@@ -210,3 +221,24 @@
     color: rgb(212, 231, 205);
   }
   
+  #myModal .modal-dialog  { 
+    width: 470px; 
+    text-align: center;
+  }
+   
+  .loadersmall {
+      float: left;
+      margin-right: 5px;
+      border: 5px solid #f3f3f3;
+      -webkit-animation: spin 1s linear infinite;
+      animation: spin 1s linear infinite;
+      border-top: 5px solid #555;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+  }
+   
+  @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+  } 

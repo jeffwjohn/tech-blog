@@ -17,7 +17,7 @@ const {
 //     console.log(req.session);
 //     res.render('homepage', {
 //       id: 1,
-//       post_url: 'https://handlebarsjs.com/guide/',
+//    
 //       title: 'Handlebars Docs',
 //       created_at: new Date(),
 //       vote_count: 10,
@@ -32,7 +32,6 @@ router.get('/', (req, res) => {
     Post.findAll({
             attributes: [
                 'id',
-                'post_url',
                 'title',
                 'created_at',
                 [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count'],
@@ -84,7 +83,7 @@ router.get('/login', (req, res) => {
 //   router.get('/post/:id', (req, res) => {
 //     const post = {
 //       id: 1,
-//       post_url: 'https://handlebarsjs.com/guide/',
+
 //       title: 'Handlebars Docs',
 //       created_at: new Date(),
 //       vote_count: 10,
@@ -107,7 +106,6 @@ router.get('/post/:id', (req, res) => {
             },
             attributes: [
                 'id',
-                'post_url',
                 'title',
                 'created_at',
                 [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count'],

@@ -5,10 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tech Blog</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" href="/stylesheets/style.css">
+
 </head>
 
 <body>
+<div id="myModal" tabindex="-1" class="modal fade" role="dialog" aria-labelledby="timedAlert" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div><div class="loadersmall"></div>We control the vertical and the horizontal. Please stand by for <span> </span>...</div>
+      </div>
+    </div>
+  </div>
+</div>
+
     <div class="wrapper">
         <header>
             <h1>
@@ -34,9 +47,10 @@
 
     {{#if loggedIn}}
     <script src="/javascript/logout.js"></script>
+    <script src="/javascript/auto-logout.js"></script>
     {{/if}}
 
 </body>
-
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </html>
 {{!-- Notice that there's a special placeholder in the <main> element: {{{ body }}}. This is Handlebars.js syntax for data that will be plugged in later. In this case, the data will be another, smaller template, like the contents of the homepage. --}}

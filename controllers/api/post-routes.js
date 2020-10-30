@@ -13,11 +13,10 @@ const withAuth = require('../../utils/auth');
 router.get('/', (req, res) => {
   console.log('======================');
   Post.findAll({
-      // attributes: ['id', 'post_url', 'title', 'created_at'],
+      // attributes: ['id', 'title', 'created_at'],
       // update the `.findAll()` method's attributes to look like this
       attributes: [
         'id',
-        'post_url',
         'title',
         'created_at',
         [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count'],
@@ -74,7 +73,6 @@ router.get('/:id', (req, res) => {
       },
       attributes: [
         'id',
-        'post_url',
         'title',
         'created_at',
         [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count'],
@@ -101,10 +99,9 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', withAuth, (req, res) => {
-  // expects {title: 'Taskmaster goes public!', post_url: 'https://taskmaster.com/press', user_id: 1}
+  // expects {title: 'Taskmaster goes public!', user_id: 1}
   Post.create({
       title: req.body.title,
-      post_url: req.body.post_url,
       blog_text: req.body.blog_text,
       user_id: req.session.user_id    
       // user_id: req.body.user_id
@@ -133,7 +130,7 @@ router.post('/', withAuth, (req, res) => {
 //         // We just updated the route to query on the post we voted on after the vote was created. As we do so, we want to tally up the total number of votes that post has. Under some circumstances, built-in Sequelize methods can do just that—specifically one called .findAndCountAll(). Unfortunately, because we're counting an associated table's data and not the post itself, that method won't work here.
 //         attributes: [
 //           'id',
-//           'post_url',
+//      
 //           'title',
 //           'created_at',
 //           // use raw MySQL aggregate function query to get a count of how many votes the post has and return it under the name `vote_count`

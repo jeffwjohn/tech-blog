@@ -5,13 +5,10 @@ async function newFormHandler(event) {
 
   const blog_text = document.querySelector('textarea[name="blog-body"]').value.trim();
 
-  const post_url = document.querySelector('input[name="post-url"]').value;
-
   const response = await fetch(`/api/posts`, {
     method: 'POST',
     body: JSON.stringify({
       title,
-      post_url,
       blog_text
     }),
     headers: {
