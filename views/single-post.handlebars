@@ -5,7 +5,8 @@
 
 <form class="comment-form">
   <div>
-    <textarea name="comment-body"></textarea>
+    <textarea id="commentTextArea" name="comment-body" maxlength="250"></textarea>
+      <p id="count">Characters left: 250</p>
   </div>
 
   <div>
@@ -18,7 +19,9 @@
 {{> comments post.comments}}
 
 {{#if loggedIn}}
-{{!-- <script src="/javascript/auto-logout.js"></script> --}}
+
 <script src="/javascript/comment.js"></script>
 <script src="/javascript/upvote.js"></script>
 {{/if}}
+
+<script src="/javascript/limitCommentText.js"></script>

@@ -188,7 +188,7 @@ main {
 
 .blog-text {
   background-color: #d2d4cf;
-  
+  word-break: break-all;
 }
 
 .comment-form {
@@ -198,6 +198,7 @@ main {
 .comment {
   padding: 1%;
   margin-bottom: 1%;
+  word-break: break-all;
 }
 
 .comment:nth-child(odd) {
